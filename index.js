@@ -210,26 +210,29 @@ keys.addEventListener('click', (e) => {
         }
 
         if (dataTag === "multiply" || dataTag === "add" || dataTag === "divide" || dataTag === "subtract") {
-            const firstValue = calculator.dataset.firstValue;
-            const operator = calculator.dataset.operator;
-            const secondValue = displayNum;
+            let firstValue = calculator.dataset.firstValue;
+            let operator = calculator.dataset.operator;
+            let secondValue = displayNum;
 
             if (firstValue && operator && previousKeyType !== "operator" && previousKeyType !== "equals") {
+                
                 const calcValue = calculate(firstValue, operator, secondValue);
                 display.textContent = calcValue;
                 calculator.dataset.firstValue = calcValue;
-
-            } else if (firstValue && operator && previousKeyType === "operator" && previousKeyType !== "equals") {
+                calculator.dataset.secondValue = displayNum
+                
+            }/* else if (firstValue && operator && previousKeyType === "operator" && previousKeyType !== "equals") {
                 const calcValue = calculate(firstValue, operator, secondValue);
                 display.textContent = calcValue;
                 calculator.dataset.firstValue = calcValue;
-            } else {
+                calculator.dataset.secondValue = displayNum;
+            } */ else {
                 calculator.dataset.firstValue = displayNum;
             }
 
             
             calculator.dataset.previousKeyType = "operator";
-            calculator.dataset.firstValue = displayNum;
+            //calculator.dataset.firstValue = displayNum;
             calculator.dataset.operator = dataTag;
 
         }
